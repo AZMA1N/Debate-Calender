@@ -1,0 +1,48 @@
+.fc {
+  --fc-border-color: #1f2937;
+  --fc-page-bg-color: transparent;
+  --fc-list-event-hover-bg-color: rgba(255, 255, 255, 0.04);
+  --fc-neutral-bg-color: rgba(255, 255, 255, 0.02);
+  --fc-today-bg-color: rgba(59, 130, 246, 0.08);
+  --fc-now-indicator-color: #60a5fa;
+  color: #e2e8f0;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.fc .fc-button-primary {
+  background: linear-gradient(135deg, #60a5fa, #a855f7);
+  border: none;
+  text-transform: none;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+}
+
+.fc .fc-button-primary:not(:disabled):hover {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+}
+
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.fc .fc-daygrid-day-frame {
+  padding: 4px;
+}
+
+.fc .fc-scrollgrid,
+.fc .fc-list-table {
+  border-color: #1f2937;
+}
+
+.fc .fc-list-day-cushion {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+}

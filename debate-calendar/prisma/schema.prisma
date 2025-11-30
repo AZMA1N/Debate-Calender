@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id                      String   @id
+  title                   String
+  start                   DateTime
+  end                     DateTime
+  locationLabel           String
+  locationIsOnline        Boolean  @default(false)
+  locationLink            String?
+  category                String
+  description             String
+  registrationUrl         String?
+  reminderOffsetMinutes   Int?
+  organizers              String?
+  featured                Boolean  @default(false)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  subscriptions Subscription[]
+  pushSubscriptions PushSubscription[]
+}
+
+model Subscription {
+  id                    String   @id @default(cuid())
+  email                 String
+  eventId               String
+  customOffsetMinutes   Int?
+  notified              Boolean  @default(false)
+  notifiedAt            DateTime?
+  createdAt             DateTime @default(now())
+
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([email, eventId])
+}
+
+model PushSubscription {
+  id                  String   @id @default(cuid())
+  endpoint            String   @unique
+  p256dh              String
+  auth                String
+  expirationTime      BigInt?
+  eventId             String
+  customOffsetMinutes Int?
+  notified            Boolean  @default(false)
+  notifiedAt          DateTime?
+  createdAt           DateTime @default(now())
+
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([endpoint, eventId])
+}
